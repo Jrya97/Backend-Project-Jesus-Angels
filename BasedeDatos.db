@@ -1,0 +1,127 @@
+-- ==============================
+-- ENUMS
+-- ==============================
+CREATE TYPE rol_usuario AS ENUM ('ADMIN','PROFESOR');
+CREATE TYPE nivel_grado AS ENUM ('INICIAL','PRIMARIA','SECUNDARIA');
+CREATE TYPE tipo_pago AS ENUM ('MATRICULA','MENSUALIDAD');
+CREATE TYPE mes_pago AS ENUM (
+    'ENERO','FEBRERO','MARZO','ABRIL','MAYO','JUNIO',
+    'JULIO','AGOSTO','SETIEMBRE','OCTUBRE','NOVIEMBRE','DICIEMBRE'
+);
+CREATE TYPE estado_pago AS ENUM ('PENDIENTE','PAGADO');
+CREATE TYPE estado_matricula AS ENUM ('ACTIVO','RETIRADO','ANULADO');
+CREATE TYPE estado_asistencia AS ENUM ('PRESENTE','AUSENTE');
+CREATE TYPE nombre_grado AS ENUM (
+    '4 AÑOS','5 AÑOS',
+    '1 GRADO','2 GRADO','3 GRADO','4 GRADO','5 GRADO','6 GRADO'
+);
+
+-- ==============================
+-- TABLAS
+-- ==============================
+
+-- PERFIL DE USUARIOS
+CREATE TABLE perfiles (
+    id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+    nombre VARCHAR(100) NOT NULL,
+    rol rol_usuario NOT NULL DEFAULT 'PROFESOR',
+    creado_en TIMESTAMPTZ DEFAULT now()
+);
+
+-- TABLA DE GRADOS / SALONES
+CREATE TABLE grados (
+    id_grado SERIAL PRIMARY KEY,
+    nombre nombre_grado NOT NULL,
+    nivel nivel_grado NOT NULL,
+    UNIQUE (nombre, nivel)
+);
+
+-- TABLA DE CURSOS
+CREATE TABLE cursos (
+    id_curso SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- RELACIÓN PROFESORES - CURSOS - GRADOS
+CREATE TABLE profesor_curso (
+    id_profesor_curso SERIAL PRIMARY KEY,
+    id_usuario UUID NOT NULL REFERENCES perfiles(id) ON DELETE CASCADE,
+    id_curso INT NOT NULL REFERENCES cursos(id_curso) ON DELETE CASCADE,
+    id_grado INT NOT NULL REFERENCES grados(id_grado) ON DELETE CASCADE,
+    UNIQUE (id_usuario, id_curso, id_grado)
+);
+
+-- TABLA DE APODERADOS
+CREATE TABLE apoderados (
+    id_apoderado SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    dni VARCHAR(20) UNIQUE NOT NULL,
+    telefono VARCHAR(20),
+    correo_electronico VARCHAR(100),
+    creado_en TIMESTAMPTZ DEFAULT now()
+);
+
+-- TABLA DE ALUMNOS
+CREATE TABLE alumnos (
+    id_alumno SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    dni VARCHAR(20) UNIQUE,
+    fecha_nacimiento DATE,
+    direccion VARCHAR(200),
+    id_apoderado INT REFERENCES apoderados(id_apoderado) ON DELETE SET NULL,
+    creado_en TIMESTAMPTZ DEFAULT now()
+);
+
+-- MATRÍCULAS
+CREATE TABLE matriculas (
+    id_matricula SERIAL PRIMARY KEY,
+    id_alumno INT NOT NULL REFERENCES alumnos(id_alumno) ON DELETE CASCADE,
+    id_grado INT NOT NULL REFERENCES grados(id_grado) ON DELETE RESTRICT,
+    anio_lectivo INT NOT NULL CHECK (anio_lectivo >= 2000),
+    fecha_matricula DATE NOT NULL DEFAULT CURRENT_DATE,
+    estado estado_matricula DEFAULT 'ACTIVO',
+    UNIQUE (id_alumno, id_grado, anio_lectivo)
+);
+
+-- RELACIÓN ALUMNO - CURSOS (mejorada)
+CREATE TABLE alumno_curso (
+    id_alumno_curso SERIAL PRIMARY KEY,
+    id_alumno INT NOT NULL REFERENCES alumnos(id_alumno) ON DELETE CASCADE,
+    id_profesor_curso INT NOT NULL REFERENCES profesor_curso(id_profesor_curso) ON DELETE CASCADE,
+    UNIQUE (id_alumno, id_profesor_curso)
+);
+
+-- PAGOS
+CREATE TABLE pagos (
+    id_pago SERIAL PRIMARY KEY,
+    id_matricula INT NOT NULL REFERENCES matriculas(id_matricula) ON DELETE CASCADE,
+    tipo tipo_pago NOT NULL,
+    mes mes_pago NULL,
+    monto NUMERIC(10,2) NOT NULL CHECK (monto > 0),
+    fecha_pago DATE NOT NULL DEFAULT CURRENT_DATE,
+    estado estado_pago DEFAULT 'PENDIENTE',
+    UNIQUE (id_matricula, tipo, mes)
+);
+
+-- ASISTENCIA
+CREATE TABLE asistencia (
+    id_asistencia SERIAL PRIMARY KEY,
+    id_alumno INT NOT NULL REFERENCES alumnos(id_alumno) ON DELETE CASCADE,
+    id_profesor_curso INT NOT NULL REFERENCES profesor_curso(id_profesor_curso) ON DELETE CASCADE,
+    fecha DATE NOT NULL DEFAULT CURRENT_DATE,
+    estado estado_asistencia NOT NULL DEFAULT 'AUSENTE',
+    UNIQUE (id_alumno, id_profesor_curso, fecha)
+);
+
+-- NOTAS (con registro de usuario)
+CREATE TABLE notas (
+    id_nota SERIAL PRIMARY KEY,
+    id_alumno INT NOT NULL REFERENCES alumnos(id_alumno) ON DELETE CASCADE,
+    id_profesor_curso INT NOT NULL REFERENCES profesor_curso(id_profesor_curso) ON DELETE CASCADE,
+    bimestre INT NOT NULL CHECK (bimestre BETWEEN 1 AND 4),
+    nota NUMERIC(5,2) NOT NULL CHECK (nota >= 0 AND nota <= 20),
+    id_usuario_registro UUID NOT NULL REFERENCES perfiles(id) ON DELETE SET NULL,
+    fecha_registro TIMESTAMPTZ DEFAULT now(),
+    UNIQUE (id_alumno, id_profesor_curso, bimestre)
+);
