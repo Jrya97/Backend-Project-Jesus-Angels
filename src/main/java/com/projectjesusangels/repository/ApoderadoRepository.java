@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ApoderadoRepository extends JpaRepository<Apoderado, Long> {
+public interface ApoderadoRepository extends JpaRepository<Apoderado, Integer> {
     Optional<Apoderado> findByDni(String dni);
 }

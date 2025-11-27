@@ -19,7 +19,7 @@ public class Alumno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_alumno")
-    private Long idAlumno;
+    private Integer idAlumno;
 
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
@@ -38,6 +38,7 @@ public class Alumno {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_apoderado")
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Apoderado apoderado;
 
     @CreationTimestamp

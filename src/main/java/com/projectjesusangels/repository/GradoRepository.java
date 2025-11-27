@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface GradoRepository extends JpaRepository<Grado, Long> {
+public interface GradoRepository extends JpaRepository<Grado, Integer> {
     List<Grado> findByNivel(NivelGrado nivel);
 }

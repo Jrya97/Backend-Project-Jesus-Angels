@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AlumnoCursoRepository extends JpaRepository<AlumnoCurso, Long> {
-    List<AlumnoCurso> findByAlumnoIdAlumno(Long idAlumno);
+public interface AlumnoCursoRepository extends JpaRepository<AlumnoCurso, Integer> {
+    List<AlumnoCurso> findByAlumnoIdAlumno(Integer idAlumno);
 }

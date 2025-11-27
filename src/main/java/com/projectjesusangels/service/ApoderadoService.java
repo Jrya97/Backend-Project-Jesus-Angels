@@ -41,11 +41,9 @@ public class ApoderadoService {
     public Apoderado update(Integer id, Apoderado apoderadoDetails) {
         Apoderado apoderado = findById(id);
         apoderado.setNombre(apoderadoDetails.getNombre());
-        apoderado.setApellido(apoderadoDetails.getApellido());
         apoderado.setDni(apoderadoDetails.getDni());
         apoderado.setTelefono(apoderadoDetails.getTelefono());
-        apoderado.setEmail(apoderadoDetails.getEmail());
-        apoderado.setDireccion(apoderadoDetails.getDireccion());
+        apoderado.setCorreoElectronico(apoderadoDetails.getCorreoElectronico());
         return apoderadoRepository.save(apoderado);
     }
 

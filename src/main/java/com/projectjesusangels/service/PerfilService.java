@@ -43,8 +43,6 @@ public class PerfilService {
         Perfil perfil = findById(id);
         perfil.setNombre(perfilDetails.getNombre());
         perfil.setRol(perfilDetails.getRol());
-        perfil.setUsuario(perfilDetails.getUsuario());
-        perfil.setPassword(perfilDetails.getPassword());
         return perfilRepository.save(perfil);
     }
 

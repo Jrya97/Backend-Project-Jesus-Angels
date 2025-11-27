@@ -22,7 +22,7 @@ public class AlumnoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Alumno> getAlumnoById(@PathVariable Long id) {
+    public ResponseEntity<Alumno> getAlumnoById(@PathVariable Integer id) {
         return ResponseEntity.ok(alumnoService.findById(id));
     }
 
@@ -32,7 +32,7 @@ public class AlumnoController {
     }
 
     @GetMapping("/apoderado/{idApoderado}")
-    public ResponseEntity<List<Alumno>> getAlumnosByApoderado(@PathVariable Long idApoderado) {
+    public ResponseEntity<List<Alumno>> getAlumnosByApoderado(@PathVariable Integer idApoderado) {
         return ResponseEntity.ok(alumnoService.findByApoderado(idApoderado));
     }
 
@@ -42,12 +42,12 @@ public class AlumnoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Alumno> updateAlumno(@PathVariable Long id, @RequestBody Alumno alumno) {
+    public ResponseEntity<Alumno> updateAlumno(@PathVariable Integer id, @RequestBody Alumno alumno) {
         return ResponseEntity.ok(alumnoService.update(id, alumno));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAlumno(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteAlumno(@PathVariable Integer id) {
         alumnoService.delete(id);
         return ResponseEntity.noContent().build();
     }

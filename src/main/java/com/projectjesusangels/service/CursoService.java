@@ -20,7 +20,7 @@ public class CursoService {
         return cursoRepository.findAll();
     }
 
-    public Curso findById(Long id) {
+    public Curso findById(Integer id) {
         return cursoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Curso", "id", id));
     }
@@ -29,13 +29,13 @@ public class CursoService {
         return cursoRepository.save(curso);
     }
 
-    public Curso update(Long id, Curso cursoDetails) {
+    public Curso update(Integer id, Curso cursoDetails) {
         Curso curso = findById(id);
         curso.setNombre(cursoDetails.getNombre());
         return cursoRepository.save(curso);
     }
 
-    public void delete(Long id) {
+    public void delete(Integer id) {
         Curso curso = findById(id);
         cursoRepository.delete(curso);
     }

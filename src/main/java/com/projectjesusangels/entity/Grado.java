@@ -19,9 +19,9 @@ public class Grado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_grado")
-    private Long idGrado;
+    private Integer idGrado;
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = com.projectjesusangels.converter.NombreGradoConverter.class)
     @Column(name = "nombre", nullable = false)
     private NombreGrado nombre;
 

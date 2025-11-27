@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface AlumnoRepository extends JpaRepository<Alumno, Long> {
+public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
     Optional<Alumno> findByDni(String dni);
-    List<Alumno> findByApoderadoIdApoderado(Long idApoderado);
+    List<Alumno> findByApoderadoIdApoderado(Integer idApoderado);
 }

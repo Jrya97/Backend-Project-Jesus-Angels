@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface NotaRepository extends JpaRepository<Nota, Long> {
-    List<Nota> findByAlumnoIdAlumno(Long idAlumno);
+public interface NotaRepository extends JpaRepository<Nota, Integer> {
+    List<Nota> findByAlumnoIdAlumno(Integer idAlumno);
     List<Nota> findByBimestre(Integer bimestre);
-    List<Nota> findByProfesorCursoIdProfesorCurso(Long idProfesorCurso);
+    List<Nota> findByProfesorCursoIdProfesorCurso(Integer idProfesorCurso);
 }

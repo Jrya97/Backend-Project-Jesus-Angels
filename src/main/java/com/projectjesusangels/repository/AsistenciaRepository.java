@@ -8,8 +8,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface AsistenciaRepository extends JpaRepository<Asistencia, Long> {
-    List<Asistencia> findByAlumnoIdAlumno(Long idAlumno);
+public interface AsistenciaRepository extends JpaRepository<Asistencia, Integer> {
+    List<Asistencia> findByAlumnoIdAlumno(Integer idAlumno);
     List<Asistencia> findByFecha(LocalDate fecha);
-    List<Asistencia> findByProfesorCursoIdProfesorCurso(Long idProfesorCurso);
+    List<Asistencia> findByProfesorCursoIdProfesorCurso(Integer idProfesorCurso);
 }

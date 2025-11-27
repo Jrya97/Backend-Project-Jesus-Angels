@@ -23,10 +23,11 @@ public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pago")
-    private Long idPago;
+    private Integer idPago;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_matricula", nullable = false)
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Matricula matricula;
 
     @Enumerated(EnumType.STRING)

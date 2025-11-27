@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MatriculaRepository extends JpaRepository<Matricula, Long> {
-    List<Matricula> findByAlumnoIdAlumno(Long idAlumno);
-    List<Matricula> findByGradoIdGrado(Long idGrado);
+public interface MatriculaRepository extends JpaRepository<Matricula, Integer> {
+    List<Matricula> findByAlumnoIdAlumno(Integer idAlumno);
+    List<Matricula> findByGradoIdGrado(Integer idGrado);
     List<Matricula> findByAnioLectivo(Integer anioLectivo);
     List<Matricula> findByEstado(EstadoMatricula estado);
 }

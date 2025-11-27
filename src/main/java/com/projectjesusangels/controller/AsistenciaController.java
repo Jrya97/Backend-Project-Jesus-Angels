@@ -24,12 +24,12 @@ public class AsistenciaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Asistencia> getAsistenciaById(@PathVariable Long id) {
+    public ResponseEntity<Asistencia> getAsistenciaById(@PathVariable Integer id) {
         return ResponseEntity.ok(asistenciaService.findById(id));
     }
 
     @GetMapping("/alumno/{idAlumno}")
-    public ResponseEntity<List<Asistencia>> getAsistenciasByAlumno(@PathVariable Long idAlumno) {
+    public ResponseEntity<List<Asistencia>> getAsistenciasByAlumno(@PathVariable Integer idAlumno) {
         return ResponseEntity.ok(asistenciaService.findByAlumno(idAlumno));
     }
 
@@ -40,7 +40,7 @@ public class AsistenciaController {
     }
 
     @GetMapping("/profesor-curso/{idProfesorCurso}")
-    public ResponseEntity<List<Asistencia>> getAsistenciasByProfesorCurso(@PathVariable Long idProfesorCurso) {
+    public ResponseEntity<List<Asistencia>> getAsistenciasByProfesorCurso(@PathVariable Integer idProfesorCurso) {
         return ResponseEntity.ok(asistenciaService.findByProfesorCurso(idProfesorCurso));
     }
 
@@ -50,12 +50,12 @@ public class AsistenciaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Asistencia> updateAsistencia(@PathVariable Long id, @RequestBody Asistencia asistencia) {
+    public ResponseEntity<Asistencia> updateAsistencia(@PathVariable Integer id, @RequestBody Asistencia asistencia) {
         return ResponseEntity.ok(asistenciaService.update(id, asistencia));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAsistencia(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteAsistencia(@PathVariable Integer id) {
         asistenciaService.delete(id);
         return ResponseEntity.noContent().build();
     }

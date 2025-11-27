@@ -21,12 +21,12 @@ public class AsistenciaService {
         return asistenciaRepository.findAll();
     }
 
-    public Asistencia findById(Long id) {
+    public Asistencia findById(Integer id) {
         return asistenciaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asistencia", "id", id));
     }
 
-    public List<Asistencia> findByAlumno(Long idAlumno) {
+    public List<Asistencia> findByAlumno(Integer idAlumno) {
         return asistenciaRepository.findByAlumnoIdAlumno(idAlumno);
     }
 
@@ -34,7 +34,7 @@ public class AsistenciaService {
         return asistenciaRepository.findByFecha(fecha);
     }
 
-    public List<Asistencia> findByProfesorCurso(Long idProfesorCurso) {
+    public List<Asistencia> findByProfesorCurso(Integer idProfesorCurso) {
         return asistenciaRepository.findByProfesorCursoIdProfesorCurso(idProfesorCurso);
     }
 
@@ -42,7 +42,7 @@ public class AsistenciaService {
         return asistenciaRepository.save(asistencia);
     }
 
-    public Asistencia update(Long id, Asistencia asistenciaDetails) {
+    public Asistencia update(Integer id, Asistencia asistenciaDetails) {
         Asistencia asistencia = findById(id);
         asistencia.setAlumno(asistenciaDetails.getAlumno());
         asistencia.setProfesorCurso(asistenciaDetails.getProfesorCurso());
@@ -51,7 +51,7 @@ public class AsistenciaService {
         return asistenciaRepository.save(asistencia);
     }
 
-    public void delete(Long id) {
+    public void delete(Integer id) {
         Asistencia asistencia = findById(id);
         asistenciaRepository.delete(asistencia);
     }

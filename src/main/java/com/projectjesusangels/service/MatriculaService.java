@@ -21,16 +21,16 @@ public class MatriculaService {
         return matriculaRepository.findAll();
     }
 
-    public Matricula findById(Long id) {
+    public Matricula findById(Integer id) {
         return matriculaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Matricula", "id", id));
     }
 
-    public List<Matricula> findByAlumno(Long idAlumno) {
+    public List<Matricula> findByAlumno(Integer idAlumno) {
         return matriculaRepository.findByAlumnoIdAlumno(idAlumno);
     }
 
-    public List<Matricula> findByGrado(Long idGrado) {
+    public List<Matricula> findByGrado(Integer idGrado) {
         return matriculaRepository.findByGradoIdGrado(idGrado);
     }
 
@@ -46,7 +46,7 @@ public class MatriculaService {
         return matriculaRepository.save(matricula);
     }
 
-    public Matricula update(Long id, Matricula matriculaDetails) {
+    public Matricula update(Integer id, Matricula matriculaDetails) {
         Matricula matricula = findById(id);
         matricula.setAlumno(matriculaDetails.getAlumno());
         matricula.setGrado(matriculaDetails.getGrado());
@@ -56,7 +56,7 @@ public class MatriculaService {
         return matriculaRepository.save(matricula);
     }
 
-    public void delete(Long id) {
+    public void delete(Integer id) {
         Matricula matricula = findById(id);
         matriculaRepository.delete(matricula);
     }

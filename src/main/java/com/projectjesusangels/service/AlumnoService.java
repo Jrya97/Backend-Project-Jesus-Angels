@@ -20,7 +20,7 @@ public class AlumnoService {
         return alumnoRepository.findAll();
     }
 
-    public Alumno findById(Long id) {
+    public Alumno findById(Integer id) {
         return alumnoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Alumno", "id", id));
     }
@@ -30,7 +30,7 @@ public class AlumnoService {
                 .orElseThrow(() -> new ResourceNotFoundException("Alumno", "dni", dni));
     }
 
-    public List<Alumno> findByApoderado(Long idApoderado) {
+    public List<Alumno> findByApoderado(Integer idApoderado) {
         return alumnoRepository.findByApoderadoIdApoderado(idApoderado);
     }
 
@@ -38,7 +38,7 @@ public class AlumnoService {
         return alumnoRepository.save(alumno);
     }
 
-    public Alumno update(Long id, Alumno alumnoDetails) {
+    public Alumno update(Integer id, Alumno alumnoDetails) {
         Alumno alumno = findById(id);
         alumno.setNombre(alumnoDetails.getNombre());
         alumno.setApellido(alumnoDetails.getApellido());
@@ -49,7 +49,7 @@ public class AlumnoService {
         return alumnoRepository.save(alumno);
     }
 
-    public void delete(Long id) {
+    public void delete(Integer id) {
         Alumno alumno = findById(id);
         alumnoRepository.delete(alumno);
     }

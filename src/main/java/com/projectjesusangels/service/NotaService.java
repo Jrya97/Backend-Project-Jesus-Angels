@@ -20,12 +20,12 @@ public class NotaService {
         return notaRepository.findAll();
     }
 
-    public Nota findById(Long id) {
+    public Nota findById(Integer id) {
         return notaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Nota", "id", id));
     }
 
-    public List<Nota> findByAlumno(Long idAlumno) {
+    public List<Nota> findByAlumno(Integer idAlumno) {
         return notaRepository.findByAlumnoIdAlumno(idAlumno);
     }
 
@@ -33,7 +33,7 @@ public class NotaService {
         return notaRepository.findByBimestre(bimestre);
     }
 
-    public List<Nota> findByProfesorCurso(Long idProfesorCurso) {
+    public List<Nota> findByProfesorCurso(Integer idProfesorCurso) {
         return notaRepository.findByProfesorCursoIdProfesorCurso(idProfesorCurso);
     }
 
@@ -50,7 +50,7 @@ public class NotaService {
         return notaRepository.save(nota);
     }
 
-    public Nota update(Long id, Nota notaDetails) {
+    public Nota update(Integer id, Nota notaDetails) {
         Nota nota = findById(id);
         // Validate nota is between 0 and 20
         if (notaDetails.getNota().compareTo(java.math.BigDecimal.ZERO) < 0 || 
@@ -65,7 +65,7 @@ public class NotaService {
         return notaRepository.save(nota);
     }
 
-    public void delete(Long id) {
+    public void delete(Integer id) {
         Nota nota = findById(id);
         notaRepository.delete(nota);
     }

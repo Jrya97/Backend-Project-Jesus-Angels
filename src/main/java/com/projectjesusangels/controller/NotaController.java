@@ -22,12 +22,12 @@ public class NotaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Nota> getNotaById(@PathVariable Long id) {
+    public ResponseEntity<Nota> getNotaById(@PathVariable Integer id) {
         return ResponseEntity.ok(notaService.findById(id));
     }
 
     @GetMapping("/alumno/{idAlumno}")
-    public ResponseEntity<List<Nota>> getNotasByAlumno(@PathVariable Long idAlumno) {
+    public ResponseEntity<List<Nota>> getNotasByAlumno(@PathVariable Integer idAlumno) {
         return ResponseEntity.ok(notaService.findByAlumno(idAlumno));
     }
 
@@ -37,7 +37,7 @@ public class NotaController {
     }
 
     @GetMapping("/profesor-curso/{idProfesorCurso}")
-    public ResponseEntity<List<Nota>> getNotasByProfesorCurso(@PathVariable Long idProfesorCurso) {
+    public ResponseEntity<List<Nota>> getNotasByProfesorCurso(@PathVariable Integer idProfesorCurso) {
         return ResponseEntity.ok(notaService.findByProfesorCurso(idProfesorCurso));
     }
 
@@ -47,12 +47,12 @@ public class NotaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Nota> updateNota(@PathVariable Long id, @RequestBody Nota nota) {
+    public ResponseEntity<Nota> updateNota(@PathVariable Integer id, @RequestBody Nota nota) {
         return ResponseEntity.ok(notaService.update(id, nota));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteNota(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteNota(@PathVariable Integer id) {
         notaService.delete(id);
         return ResponseEntity.noContent().build();
     }

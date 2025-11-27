@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface ProfesorCursoRepository extends JpaRepository<ProfesorCurso, Long> {
+public interface ProfesorCursoRepository extends JpaRepository<ProfesorCurso, Integer> {
     List<ProfesorCurso> findByPerfilId(UUID idProfesor);
-    List<ProfesorCurso> findByCursoIdCurso(Long idCurso);
-    List<ProfesorCurso> findByGradoIdGrado(Long idGrado);
+    List<ProfesorCurso> findByCursoIdCurso(Integer idCurso);
+    List<ProfesorCurso> findByGradoIdGrado(Integer idGrado);
 }

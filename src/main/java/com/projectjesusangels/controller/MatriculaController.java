@@ -23,17 +23,17 @@ public class MatriculaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Matricula> getMatriculaById(@PathVariable Long id) {
+    public ResponseEntity<Matricula> getMatriculaById(@PathVariable Integer id) {
         return ResponseEntity.ok(matriculaService.findById(id));
     }
 
     @GetMapping("/alumno/{idAlumno}")
-    public ResponseEntity<List<Matricula>> getMatriculasByAlumno(@PathVariable Long idAlumno) {
+    public ResponseEntity<List<Matricula>> getMatriculasByAlumno(@PathVariable Integer idAlumno) {
         return ResponseEntity.ok(matriculaService.findByAlumno(idAlumno));
     }
 
     @GetMapping("/grado/{idGrado}")
-    public ResponseEntity<List<Matricula>> getMatriculasByGrado(@PathVariable Long idGrado) {
+    public ResponseEntity<List<Matricula>> getMatriculasByGrado(@PathVariable Integer idGrado) {
         return ResponseEntity.ok(matriculaService.findByGrado(idGrado));
     }
 
@@ -53,12 +53,12 @@ public class MatriculaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Matricula> updateMatricula(@PathVariable Long id, @RequestBody Matricula matricula) {
+    public ResponseEntity<Matricula> updateMatricula(@PathVariable Integer id, @RequestBody Matricula matricula) {
         return ResponseEntity.ok(matriculaService.update(id, matricula));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMatricula(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteMatricula(@PathVariable Integer id) {
         matriculaService.delete(id);
         return ResponseEntity.noContent().build();
     }

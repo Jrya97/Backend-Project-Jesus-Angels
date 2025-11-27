@@ -22,12 +22,12 @@ public class PagoService {
         return pagoRepository.findAll();
     }
 
-    public Pago findById(Long id) {
+    public Pago findById(Integer id) {
         return pagoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pago", "id", id));
     }
 
-    public List<Pago> findByMatricula(Long idMatricula) {
+    public List<Pago> findByMatricula(Integer idMatricula) {
         return pagoRepository.findByMatriculaIdMatricula(idMatricula);
     }
 
@@ -43,7 +43,7 @@ public class PagoService {
         return pagoRepository.save(pago);
     }
 
-    public Pago update(Long id, Pago pagoDetails) {
+    public Pago update(Integer id, Pago pagoDetails) {
         Pago pago = findById(id);
         pago.setMatricula(pagoDetails.getMatricula());
         pago.setTipo(pagoDetails.getTipo());
@@ -54,7 +54,7 @@ public class PagoService {
         return pagoRepository.save(pago);
     }
 
-    public void delete(Long id) {
+    public void delete(Integer id) {
         Pago pago = findById(id);
         pagoRepository.delete(pago);
     }

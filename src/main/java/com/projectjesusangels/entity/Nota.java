@@ -22,14 +22,16 @@ public class Nota {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_nota")
-    private Long idNota;
+    private Integer idNota;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_alumno", nullable = false)
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Alumno alumno;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_profesor_curso", nullable = false)
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private ProfesorCurso profesorCurso;
 
     @Column(name = "bimestre", nullable = false)

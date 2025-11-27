@@ -24,12 +24,12 @@ public class PagoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pago> getPagoById(@PathVariable Long id) {
+    public ResponseEntity<Pago> getPagoById(@PathVariable Integer id) {
         return ResponseEntity.ok(pagoService.findById(id));
     }
 
     @GetMapping("/matricula/{idMatricula}")
-    public ResponseEntity<List<Pago>> getPagosByMatricula(@PathVariable Long idMatricula) {
+    public ResponseEntity<List<Pago>> getPagosByMatricula(@PathVariable Integer idMatricula) {
         return ResponseEntity.ok(pagoService.findByMatricula(idMatricula));
     }
 
@@ -49,12 +49,12 @@ public class PagoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Pago> updatePago(@PathVariable Long id, @RequestBody Pago pago) {
+    public ResponseEntity<Pago> updatePago(@PathVariable Integer id, @RequestBody Pago pago) {
         return ResponseEntity.ok(pagoService.update(id, pago));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePago(@PathVariable Long id) {
+    public ResponseEntity<Void> deletePago(@PathVariable Integer id) {
         pagoService.delete(id);
         return ResponseEntity.noContent().build();
     }
