@@ -32,4 +32,23 @@ public class SupabaseAuthService {
                 .retrieve()
                 .body(Map.class);
     }
+
+    public Map<String, Object> getUser(String token) {
+        return restClient.get()
+                .uri("/auth/v1/user")
+                .header("apikey", supabaseKey)
+                .header("Authorization", "Bearer " + token)
+                .retrieve()
+                .body(Map.class);
+    }
+
+    public Map<String, Object> signIn(AuthRequest request) {
+        return restClient.post()
+                .uri("/auth/v1/token?grant_type=password")
+                .header("apikey", supabaseKey)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(request)
+                .retrieve()
+                .body(Map.class);
+    }
 }
