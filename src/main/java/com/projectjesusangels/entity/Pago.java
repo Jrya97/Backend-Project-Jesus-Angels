@@ -13,7 +13,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "pagos", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"id_matricula", "tipo", "mes"})
+    @UniqueConstraint(columnNames = {"id_alumno", "tipo", "mes"})
 })
 @Data
 @NoArgsConstructor
@@ -26,9 +26,9 @@ public class Pago {
     private Integer idPago;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_matricula", nullable = false)
+    @JoinColumn(name = "id_alumno", nullable = false)
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Matricula matricula;
+    private Alumno alumno;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo", nullable = false)

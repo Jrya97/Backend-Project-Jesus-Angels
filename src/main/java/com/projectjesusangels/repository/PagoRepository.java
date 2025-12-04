@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface PagoRepository extends JpaRepository<Pago, Integer> {
-    List<Pago> findByMatriculaIdMatricula(Integer idMatricula);
+    List<Pago> findByAlumnoIdAlumno(Integer idAlumno);
     List<Pago> findByEstado(EstadoPago estado);
     List<Pago> findByTipo(TipoPago tipo);
 }

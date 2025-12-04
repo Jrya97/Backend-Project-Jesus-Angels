@@ -27,8 +27,8 @@ public class PagoService {
                 .orElseThrow(() -> new ResourceNotFoundException("Pago", "id", id));
     }
 
-    public List<Pago> findByMatricula(Integer idMatricula) {
-        return pagoRepository.findByMatriculaIdMatricula(idMatricula);
+    public List<Pago> findByAlumno(Integer idAlumno) {
+        return pagoRepository.findByAlumnoIdAlumno(idAlumno);
     }
 
     public List<Pago> findByEstado(EstadoPago estado) {
@@ -45,7 +45,7 @@ public class PagoService {
 
     public Pago update(Integer id, Pago pagoDetails) {
         Pago pago = findById(id);
-        pago.setMatricula(pagoDetails.getMatricula());
+        pago.setAlumno(pagoDetails.getAlumno());
         pago.setTipo(pagoDetails.getTipo());
         pago.setMes(pagoDetails.getMes());
         pago.setMonto(pagoDetails.getMonto());

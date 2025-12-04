@@ -28,9 +28,9 @@ public class PagoController {
         return ResponseEntity.ok(pagoService.findById(id));
     }
 
-    @GetMapping("/matricula/{idMatricula}")
-    public ResponseEntity<List<Pago>> getPagosByMatricula(@PathVariable Integer idMatricula) {
-        return ResponseEntity.ok(pagoService.findByMatricula(idMatricula));
+    @GetMapping("/alumno/{idAlumno}")
+    public ResponseEntity<List<Pago>> getPagosByAlumno(@PathVariable Integer idAlumno) {
+        return ResponseEntity.ok(pagoService.findByAlumno(idAlumno));
     }
 
     @GetMapping("/estado/{estado}")
