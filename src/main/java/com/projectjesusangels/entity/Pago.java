@@ -47,4 +47,7 @@ public class Pago {
     @Enumerated(EnumType.STRING)
     @Column(name = "estado")
     private EstadoPago estado = EstadoPago.PENDIENTE;
+
+    @Column(name = "anio_pago", nullable = false)
+    private String anioPago;
 }

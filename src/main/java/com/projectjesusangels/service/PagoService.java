@@ -51,6 +51,7 @@ public class PagoService {
         pago.setMonto(pagoDetails.getMonto());
         pago.setFechaPago(pagoDetails.getFechaPago());
         pago.setEstado(pagoDetails.getEstado());
+        pago.setAnioPago(pagoDetails.getAnioPago());
         return pagoRepository.save(pago);
     }
 
