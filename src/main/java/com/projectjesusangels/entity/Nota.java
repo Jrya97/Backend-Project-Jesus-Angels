@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "notas", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"id_alumno", "id_profesor_curso", "bimestre"})
+    @UniqueConstraint(columnNames = {"id_alumno", "id_curso", "tipo_nota"})
 })
 @Data
 @NoArgsConstructor
@@ -30,12 +30,12 @@ public class Nota {
     private Alumno alumno;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_profesor_curso", nullable = false)
+    @JoinColumn(name = "id_curso", nullable = false)
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private ProfesorCurso profesorCurso;
+    private Curso curso;
 
-    @Column(name = "bimestre", nullable = false)
-    private Integer bimestre;
+    @Column(name = "tipo_nota", nullable = false)
+    private String tipoNota;
 
     @Column(name = "nota", nullable = false, precision = 5, scale = 2)
     private BigDecimal nota;

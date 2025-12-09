@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface NotaRepository extends JpaRepository<Nota, Integer> {
     List<Nota> findByAlumnoIdAlumno(Integer idAlumno);
-    List<Nota> findByBimestre(Integer bimestre);
-    List<Nota> findByProfesorCursoIdProfesorCurso(Integer idProfesorCurso);
+    List<Nota> findByTipoNota(String tipoNota);
+    List<Nota> findByCursoIdCurso(Integer idCurso);
 }

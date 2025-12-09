@@ -31,14 +31,14 @@ public class NotaController {
         return ResponseEntity.ok(notaService.findByAlumno(idAlumno));
     }
 
-    @GetMapping("/bimestre/{bimestre}")
-    public ResponseEntity<List<Nota>> getNotasByBimestre(@PathVariable Integer bimestre) {
-        return ResponseEntity.ok(notaService.findByBimestre(bimestre));
+    @GetMapping("/tipo-nota/{tipoNota}")
+    public ResponseEntity<List<Nota>> getNotasByTipoNota(@PathVariable String tipoNota) {
+        return ResponseEntity.ok(notaService.findByTipoNota(tipoNota));
     }
 
-    @GetMapping("/profesor-curso/{idProfesorCurso}")
-    public ResponseEntity<List<Nota>> getNotasByProfesorCurso(@PathVariable Integer idProfesorCurso) {
-        return ResponseEntity.ok(notaService.findByProfesorCurso(idProfesorCurso));
+    @GetMapping("/curso/{idCurso}")
+    public ResponseEntity<List<Nota>> getNotasByCurso(@PathVariable Integer idCurso) {
+        return ResponseEntity.ok(notaService.findByCurso(idCurso));
     }
 
     @PostMapping

@@ -29,12 +29,12 @@ public class NotaService {
         return notaRepository.findByAlumnoIdAlumno(idAlumno);
     }
 
-    public List<Nota> findByBimestre(Integer bimestre) {
-        return notaRepository.findByBimestre(bimestre);
+    public List<Nota> findByTipoNota(String tipoNota) {
+        return notaRepository.findByTipoNota(tipoNota);
     }
 
-    public List<Nota> findByProfesorCurso(Integer idProfesorCurso) {
-        return notaRepository.findByProfesorCursoIdProfesorCurso(idProfesorCurso);
+    public List<Nota> findByCurso(Integer idCurso) {
+        return notaRepository.findByCursoIdCurso(idCurso);
     }
 
     public Nota create(Nota nota) {
@@ -43,9 +43,9 @@ public class NotaService {
             nota.getNota().compareTo(new java.math.BigDecimal("20")) > 0) {
             throw new IllegalArgumentException("La nota debe estar entre 0 y 20");
         }
-        // Validate bimestre is between 1 and 4
-        if (nota.getBimestre() < 1 || nota.getBimestre() > 4) {
-            throw new IllegalArgumentException("El bimestre debe estar entre 1 y 4");
+        // Validate tipoNota is not empty
+        if (nota.getTipoNota() == null || nota.getTipoNota().trim().isEmpty()) {
+            throw new IllegalArgumentException("El tipo de nota es requerido");
         }
         return notaRepository.save(nota);
     }
@@ -58,8 +58,8 @@ public class NotaService {
             throw new IllegalArgumentException("La nota debe estar entre 0 y 20");
         }
         nota.setAlumno(notaDetails.getAlumno());
-        nota.setProfesorCurso(notaDetails.getProfesorCurso());
-        nota.setBimestre(notaDetails.getBimestre());
+        nota.setCurso(notaDetails.getCurso());
+        nota.setTipoNota(notaDetails.getTipoNota());
         nota.setNota(notaDetails.getNota());
         nota.setIdUsuarioRegistro(notaDetails.getIdUsuarioRegistro());
         return notaRepository.save(nota);
