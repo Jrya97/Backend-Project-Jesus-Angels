@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "asistencia", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"id_alumno", "id_profesor_curso", "fecha"})
+    @UniqueConstraint(columnNames = {"id_alumno", "fecha"})
 })
 @Data
 @NoArgsConstructor
@@ -27,10 +27,6 @@ public class Asistencia {
     @com.fasterxml.jackson.annotation.JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Alumno alumno;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_profesor_curso", nullable = false)
-    @com.fasterxml.jackson.annotation.JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private ProfesorCurso profesorCurso;
 
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha = LocalDate.now();

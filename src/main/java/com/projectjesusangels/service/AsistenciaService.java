@@ -34,18 +34,18 @@ public class AsistenciaService {
         return asistenciaRepository.findByFecha(fecha);
     }
 
-    public List<Asistencia> findByProfesorCurso(Integer idProfesorCurso) {
-        return asistenciaRepository.findByProfesorCursoIdProfesorCurso(idProfesorCurso);
-    }
 
     public Asistencia create(Asistencia asistencia) {
         return asistenciaRepository.save(asistencia);
     }
 
+    public List<Asistencia> createBatch(List<Asistencia> asistencias) {
+        return asistenciaRepository.saveAll(asistencias);
+    }
+
     public Asistencia update(Integer id, Asistencia asistenciaDetails) {
         Asistencia asistencia = findById(id);
         asistencia.setAlumno(asistenciaDetails.getAlumno());
-        asistencia.setProfesorCurso(asistenciaDetails.getProfesorCurso());
         asistencia.setFecha(asistenciaDetails.getFecha());
         asistencia.setEstado(asistenciaDetails.getEstado());
         return asistenciaRepository.save(asistencia);

@@ -39,14 +39,15 @@ public class AsistenciaController {
         return ResponseEntity.ok(asistenciaService.findByFecha(fecha));
     }
 
-    @GetMapping("/profesor-curso/{idProfesorCurso}")
-    public ResponseEntity<List<Asistencia>> getAsistenciasByProfesorCurso(@PathVariable Integer idProfesorCurso) {
-        return ResponseEntity.ok(asistenciaService.findByProfesorCurso(idProfesorCurso));
-    }
 
     @PostMapping
     public ResponseEntity<Asistencia> createAsistencia(@RequestBody Asistencia asistencia) {
         return ResponseEntity.status(HttpStatus.CREATED).body(asistenciaService.create(asistencia));
+    }
+
+    @PostMapping("/batch")
+    public ResponseEntity<List<Asistencia>> createAsistenciasBatch(@RequestBody List<Asistencia> asistencias) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(asistenciaService.createBatch(asistencias));
     }
 
     @PutMapping("/{id}")

@@ -11,5 +11,4 @@ import java.util.List;
 public interface AsistenciaRepository extends JpaRepository<Asistencia, Integer> {
     List<Asistencia> findByAlumnoIdAlumno(Integer idAlumno);
     List<Asistencia> findByFecha(LocalDate fecha);
-    List<Asistencia> findByProfesorCursoIdProfesorCurso(Integer idProfesorCurso);
 }
