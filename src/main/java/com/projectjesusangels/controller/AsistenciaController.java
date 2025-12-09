@@ -45,6 +45,11 @@ public class AsistenciaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(asistenciaService.create(asistencia));
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<Asistencia> partialUpdateAsistencia(@PathVariable Integer id, @RequestBody Asistencia asistencia) {
+        return ResponseEntity.ok(asistenciaService.partialUpdate(id, asistencia));
+    }
+
     @PostMapping("/batch")
     public ResponseEntity<List<Asistencia>> createAsistenciasBatch(@RequestBody List<Asistencia> asistencias) {
         return ResponseEntity.status(HttpStatus.CREATED).body(asistenciaService.createBatch(asistencias));

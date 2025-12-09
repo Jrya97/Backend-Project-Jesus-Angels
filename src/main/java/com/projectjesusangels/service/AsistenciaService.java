@@ -39,6 +39,23 @@ public class AsistenciaService {
         return asistenciaRepository.save(asistencia);
     }
 
+    public Asistencia partialUpdate(Integer id, Asistencia asistenciaDetails) {
+        Asistencia asistencia = findById(id);
+        
+        // Solo actualizar los campos que no son null
+        if (asistenciaDetails.getAlumno() != null) {
+            asistencia.setAlumno(asistenciaDetails.getAlumno());
+        }
+        if (asistenciaDetails.getFecha() != null) {
+            asistencia.setFecha(asistenciaDetails.getFecha());
+        }
+        if (asistenciaDetails.getEstado() != null) {
+            asistencia.setEstado(asistenciaDetails.getEstado());
+        }
+        
+        return asistenciaRepository.save(asistencia);
+    }
+
     public List<Asistencia> createBatch(List<Asistencia> asistencias) {
         return asistenciaRepository.saveAll(asistencias);
     }
